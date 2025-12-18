@@ -13,17 +13,16 @@ public class Grappler : MonoBehaviour
 
     [SerializeField] private Rope GrapplingRope;
     [SerializeField] private float launchSpeed;
-    public Rigidbody2D Rb;
-    public SpringJoint2D lineDistance;
-    public Camera MainCam;
+    private Rigidbody2D Rb;
+    private SpringJoint2D lineDistance;
+    [SerializeField] private Camera MainCam;
     public Transform GunPoint;
-    Vector2 DirectionToMove;
-    public float GrappleLength;
-    public float GravityScale;
+    [SerializeField][Range(0, 10)] private float GravityScale, BaseGravity, DampDistance;
+    [SerializeField][Range(0, 2)] private float DampScale, BaseDamp;
     public List<GameObject> points;
-    public Transform GrapplePoint;
-    public Vector2 DistanceToPoint;
-    public bool Connected;
+    [HideInInspector] public Transform GrapplePoint;
+    [HideInInspector] public Vector2 DistanceToPoint;
+    
     private void Awake()
     {
         GrappleAction = inputActions.actionMaps[0].actions[0];
@@ -58,6 +57,14 @@ public class Grappler : MonoBehaviour
         GrapplePoint = Point.transform;
         DistanceToPoint = Point.transform.position - transform.position;
         float TotalDistance = DistanceToPoint.magnitude;
+        if (TotalDistance > DampDistance)
+        {
+            DampScale = 1f;
+        }
+        else
+        {
+            DampScale = 0.6f;
+        }
         GrapplingRope.enabled = true;
     }
     public void Grapple()
@@ -66,6 +73,9 @@ public class Grappler : MonoBehaviour
         Vector2 Distance = GunPoint.transform.position - transform.position;
         lineDistance.distance = Distance.magnitude;
         lineDistance.frequency = launchSpeed;
+
+        Rb.gravityScale = GravityScale;
+        Rb.linearDamping = DampScale;
         lineDistance.enabled = true;
     }
 
@@ -94,8 +104,9 @@ public class Grappler : MonoBehaviour
     public void GrappleDeactivate()
     {
         lineDistance.enabled = false;
-        Rb.gravityScale = 1;
+        Rb.gravityScale = BaseGravity;
         GrapplingRope.enabled = false;
+        Rb.linearDamping = BaseDamp;
     }
     public void OvertimeForce(Transform ForcePoint)
     {

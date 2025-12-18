@@ -34,7 +34,6 @@ public class Rope : MonoBehaviour
     private void OnDisable()
     {
         isGrappling = false;
-        grapplingGun.Connected = false;
         m_lineRenderer.enabled = false;
     }
     private void LinePointsToFirePoint()

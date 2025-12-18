@@ -983,7 +983,6 @@ GameObject:
   - component: {fileID: 597098461}
   - component: {fileID: 597098463}
   - component: {fileID: 597098466}
-  - component: {fileID: 597098465}
   - component: {fileID: 597098468}
   - component: {fileID: 597098467}
   - component: {fileID: 597098470}
@@ -1102,26 +1101,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!232 &597098465
-DistanceJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 597098460}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 1
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 0
-  m_Distance: 2.3400855
-  m_MaxDistanceOnly: 0
 --- !u!50 &597098466
 Rigidbody2D:
   serializedVersion: 5
@@ -1163,17 +1142,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   GrapplingRope: {fileID: 597098469}
-  launchSpeed: 2
-  Rb: {fileID: 0}
-  lineDistance: {fileID: 0}
+  launchSpeed: 1
   MainCam: {fileID: 519420031}
   GunPoint: {fileID: 205325056}
-  GrappleLength: 0.5
-  GravityScale: 4
+  GravityScale: 1.75
+  BaseGravity: 2
+  DampDistance: 10
+  DampScale: 0.5
+  BaseDamp: 0.25
   points: []
   GrapplePoint: {fileID: 0}
   DistanceToPoint: {x: 0, y: 0}
-  Connected: 0
 --- !u!120 &597098468
 LineRenderer:
   serializedVersion: 2
@@ -1394,8 +1373,8 @@ SpringJoint2D:
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 0
   m_Distance: 2.3400855
-  m_DampingRatio: 0
-  m_Frequency: 1
+  m_DampingRatio: 1
+  m_Frequency: 2
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
