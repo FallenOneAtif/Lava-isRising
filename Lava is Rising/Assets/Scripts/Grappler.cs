@@ -22,7 +22,7 @@ public class Grappler : MonoBehaviour
     public List<GameObject> points;
     [HideInInspector] public Transform GrapplePoint;
     [HideInInspector] public Vector2 DistanceToPoint;
-    
+    public float Torque;
     private void Awake()
     {
         GrappleAction = inputActions.actionMaps[0].actions[0];
@@ -48,6 +48,10 @@ public class Grappler : MonoBehaviour
         float rot = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg - 90f;
         Rb.rotation = rot;
 
+        if (lineDistance)
+        {
+            Rb.AddTorque(Torque);
+        }
     }
     public void GrappleActivate()
     {
@@ -73,7 +77,6 @@ public class Grappler : MonoBehaviour
         Vector2 Distance = GunPoint.transform.position - transform.position;
         lineDistance.distance = Distance.magnitude;
         lineDistance.frequency = launchSpeed;
-
         Rb.gravityScale = GravityScale;
         Rb.linearDamping = DampScale;
         lineDistance.enabled = true;
@@ -84,18 +87,18 @@ public class Grappler : MonoBehaviour
         GameObject NearestObj = null;
         float MinDistance = Mathf.Infinity;
        
-        Debug.Log(Position);
         foreach (var item in points)
         {
-            
-            float Distance = Vector2.Distance(item.transform.position, Position);
-            if (Distance < MinDistance) 
+            if (item != null)
             {
-                NearestObj = item;
-                MinDistance = Distance;
+                float Distance = Vector2.Distance(item.transform.position, Position);
+                if (Distance < MinDistance)
+                {
+                    NearestObj = item;
+                    MinDistance = Distance;
 
+                }
             }
-
         }
         Debug.Log(NearestObj);
 
@@ -108,9 +111,6 @@ public class Grappler : MonoBehaviour
         GrapplingRope.enabled = false;
         Rb.linearDamping = BaseDamp;
     }
-    public void OvertimeForce(Transform ForcePoint)
-    {
-
-    }
+    
 
 }
