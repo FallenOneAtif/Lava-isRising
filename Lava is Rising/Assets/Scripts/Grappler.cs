@@ -17,8 +17,11 @@ public class Grappler : MonoBehaviour
     private SpringJoint2D lineDistance;
     [SerializeField] private Camera MainCam;
     public Transform GunPoint;
+
+    [Header("Physics Calc:")]
+
     [SerializeField][Range(0, 10)] private float GravityScale, BaseGravity, DampDistance;
-    [SerializeField][Range(0, 2)] private float DampScale, BaseDamp;
+    [SerializeField][Range(0, 2)] private float DampScale, BaseDamp, FrequencyDamp;
     public List<GameObject> points;
     [HideInInspector] public Transform GrapplePoint;
     [HideInInspector] public Vector2 DistanceToPoint;
@@ -35,8 +38,7 @@ public class Grappler : MonoBehaviour
         lineDistance = GetComponent<SpringJoint2D>();
         GrapplingRope.enabled = false;
         lineDistance.enabled = false;
-        GameObject[] TaggedObjects = GameObject.FindGameObjectsWithTag("GrapplePoint");
-        points.AddRange(TaggedObjects);
+        
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -47,39 +49,54 @@ public class Grappler : MonoBehaviour
 
         float rot = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg - 90f;
         Rb.rotation = rot;
-
-        if (lineDistance)
+        Rb.AddTorque(10f);
+        if (lineDistance.frequency < 1)
         {
-            Rb.AddTorque(Torque);
+            lineDistance.frequency += FrequencyDamp * Time.deltaTime;
         }
+        else
+            lineDistance.frequency = 1;
+    }
+    public void PointsList(GameObject Obj)
+    {
+        points.Add(Obj);
     }
     public void GrappleActivate()
     {
         
         Vector2 MousePos = Mouse.current.position.ReadValue();
         GameObject Point = NearestObject(MainCam.ScreenToWorldPoint(MousePos));
-        GrapplePoint = Point.transform;
-        DistanceToPoint = Point.transform.position - transform.position;
-        float TotalDistance = DistanceToPoint.magnitude;
-        if (TotalDistance > DampDistance)
+        if (Point != null)
         {
-            DampScale = 1f;
+            GrapplePoint = Point.transform;
+            DistanceToPoint = Point.transform.position - transform.position;
+            float TotalDistance = DistanceToPoint.magnitude;
+            if (TotalDistance > DampDistance)
+            {
+                DampScale = 1f;
+            }
+            else
+            {
+                DampScale = 0.6f;
+            }
+            GrapplingRope.enabled = true;
         }
-        else
-        {
-            DampScale = 0.6f;
-        }
-        GrapplingRope.enabled = true;
+        
     }
     public void Grapple()
     {
-        lineDistance.connectedAnchor = GrapplePoint.transform.position;
-        Vector2 Distance = GunPoint.transform.position - transform.position;
-        lineDistance.distance = Distance.magnitude;
-        lineDistance.frequency = launchSpeed;
-        Rb.gravityScale = GravityScale;
-        Rb.linearDamping = DampScale;
-        lineDistance.enabled = true;
+        if (GrapplePoint != null)
+        {
+            lineDistance.connectedAnchor = GrapplePoint.transform.position;
+            Vector2 Distance = GunPoint.transform.position - transform.position;
+            lineDistance.distance = Distance.magnitude;
+            Debug.Log(launchSpeed / DistanceToPoint.magnitude);
+            lineDistance.frequency = launchSpeed / DistanceToPoint.magnitude;
+            Rb.gravityScale = GravityScale;
+            Rb.linearDamping = DampScale;
+            lineDistance.enabled = true;
+        }
+        
     }
 
     public GameObject NearestObject(Vector2 Position)
@@ -99,6 +116,10 @@ public class Grappler : MonoBehaviour
 
                 }
             }
+        }
+        if (NearestObj == null)
+        {
+            return null;
         }
         Debug.Log(NearestObj);
 
