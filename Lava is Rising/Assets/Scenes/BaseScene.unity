@@ -674,6 +674,7 @@ MonoBehaviour:
   points: []
   GrapplePoint: {fileID: 0}
   DistanceToPoint: {x: 0, y: 0}
+  Torque: 0
 --- !u!120 &597098468
 LineRenderer:
   serializedVersion: 2
