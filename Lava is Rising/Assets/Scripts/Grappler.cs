@@ -22,7 +22,7 @@ public class Grappler : MonoBehaviour
 
     [SerializeField][Range(0, 10)] private float GravityScale, BaseGravity, DampDistance;
     [SerializeField][Range(0, 2)] private float DampScale, BaseDamp, FrequencyDamp;
-    public List<GameObject> points;
+    public List<GameObject> points, PooledPoints;
     [HideInInspector] public Transform GrapplePoint;
     [HideInInspector] public Vector2 DistanceToPoint;
     public float Torque;
@@ -57,10 +57,12 @@ public class Grappler : MonoBehaviour
         else
             lineDistance.frequency = 1;
     }
-    public void PointsList(GameObject Obj)
+
+    public void PoolObj(GameObject Obj)
     {
         points.Add(Obj);
     }
+    
     public void GrappleActivate()
     {
         
@@ -85,7 +87,7 @@ public class Grappler : MonoBehaviour
     }
     public void Grapple()
     {
-        if (GrapplePoint != null)
+        if (GrapplePoint.gameObject.activeInHierarchy)
         {
             lineDistance.connectedAnchor = GrapplePoint.transform.position;
             Vector2 Distance = GunPoint.transform.position - transform.position;

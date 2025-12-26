@@ -1,4 +1,8 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
+
+using static UnityEditor.PlayerSettings;
 
 public class PointSpawner : MonoBehaviour
 {
@@ -11,13 +15,15 @@ public class PointSpawner : MonoBehaviour
     public float RayRadius;
     int Height, Width, BaseReq;  
     Vector2 Position;
+    public List<GameObject> PooledPoints;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        SpawnObjectAtStart(10);
+
     }
     void Start()
     {
+        SpawnObjectAtStart(7);
         BaseReq = 1;
         Height = Screen.height;
         Width = Screen.width;
@@ -28,11 +34,16 @@ public class PointSpawner : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(Player.position.y > Position.y * BaseReq)
+        if(Player.position.x > Position.x * BaseReq)
+        {
+            SpawnObjects(0, 2, 7);
+        }
+        else if (Player.position.y > Position.y * BaseReq)
         {
             SpawnObjects(2, 0, 7);
         }
     }
+ 
     public void SpawnObjectAtStart(int amount)
     {
         for (int i = 0; i < amount; i++)
@@ -45,7 +56,7 @@ public class PointSpawner : MonoBehaviour
             if (RayData.Length <= 0)
             {
                 GameObject var = Instantiate(GrapplePoint, Pos, Quaternion.identity);
-                grappler.PointsList(var);
+                grappler.PoolObj(var);
             }
         }
         
@@ -63,8 +74,10 @@ public class PointSpawner : MonoBehaviour
             Collider2D[] RayData = Physics2D.OverlapCircleAll(Pos, RayRadius);
             if (RayData.Length <= 0)
             {
-                GameObject var = Instantiate(GrapplePoint, Pos, Quaternion.identity);
-                grappler.PointsList(var);
+               
+                    GameObject var = Instantiate(GrapplePoint, Pos, Quaternion.identity);
+                grappler.PoolObj(var);
+
             }
         }
         Debug.Log("Called");
