@@ -111,7 +111,7 @@ public class Grappler : MonoBehaviour
             if (item != null)
             {
                 float Distance = Vector2.Distance(item.transform.position, Position);
-                if (Distance < MinDistance)
+                if (Distance < MinDistance && item.tag == "GrapplePoint")
                 {
                     NearestObj = item;
                     MinDistance = Distance;

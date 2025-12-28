@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 using static UnityEditor.PlayerSettings;
+using System.Reflection.Emit;
 
 public class PointSpawner : MonoBehaviour
 {
@@ -55,8 +56,12 @@ public class PointSpawner : MonoBehaviour
             Collider2D[] RayData = Physics2D.OverlapCircleAll(Pos, RayRadius);
             if (RayData.Length <= 0)
             {
-                GameObject var = Instantiate(GrapplePoint, Pos, Quaternion.identity);
+                GameObject var = Instantiate(GrapplePoint, Pos, Quaternion.identity, transform);
                 grappler.PoolObj(var);
+            }
+            else
+            {
+                amount += 1;
             }
         }
         
@@ -75,7 +80,7 @@ public class PointSpawner : MonoBehaviour
             if (RayData.Length <= 0)
             {
                
-                    GameObject var = Instantiate(GrapplePoint, Pos, Quaternion.identity);
+                    GameObject var = Instantiate(GrapplePoint, Pos, Quaternion.identity, transform);
                 grappler.PoolObj(var);
 
             }
@@ -87,5 +92,7 @@ public class PointSpawner : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, RayRadius);
+
     }
+
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7857114876817124550}
   - component: {fileID: 1102265769562289708}
   - component: {fileID: 1948420292235415673}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrapplePointD
   m_TagString: GrapplePoint
   m_Icon: {fileID: 0}
@@ -126,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDestructible: 1
   DragForce: 0.8
+  anim: {fileID: 0}
 --- !u!58 &1948420292235415673
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -6,11 +6,12 @@ TagManager:
   tags:
   - GrapplePoint
   - Death
+  - Serial
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 

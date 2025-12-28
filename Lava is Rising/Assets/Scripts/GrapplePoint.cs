@@ -28,9 +28,10 @@ public class GrapplePoint : MonoBehaviour
         info.gameObject.GetComponent<Rigidbody2D>().linearVelocity *= DragForce;
         anim.enabled = true;
         this.GetComponent<CircleCollider2D>().enabled = false;
+        transform.tag = "Serial";
     }
     public void Destroy()
     {
-        this.gameObject.SetActive(false);
+         Destroy(this.gameObject);  
     }
 }
