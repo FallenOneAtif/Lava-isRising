@@ -8,7 +8,7 @@ using System.Reflection.Emit;
 public class PointSpawner : MonoBehaviour
 {
     [SerializeField] private Camera MainCam;
-    [SerializeField] private GameObject GrapplePoint;
+    [SerializeField] private GameObject GrapplePoint, EnemyMulti, EnemySingle;
     [SerializeField] private Vector2 PositionSpawn;
     [SerializeField] private Grappler grappler;
     [SerializeField] private Transform Player;
@@ -17,6 +17,7 @@ public class PointSpawner : MonoBehaviour
     int Height, Width, BaseReq;  
     Vector2 Position;
     public List<GameObject> PooledPoints;
+    private bool allowEnemy;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -24,7 +25,7 @@ public class PointSpawner : MonoBehaviour
     }
     void Start()
     {
-        SpawnObjectAtStart(7);
+        SpawnObjectAtStart(12);
         BaseReq = 1;
         Height = Screen.height;
         Width = Screen.width;
@@ -49,13 +50,14 @@ public class PointSpawner : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            RandomX = Random.Range(0, Screen.width);
-            RandomY = Random.Range(0, Screen.height);
+            RandomX = Random.Range(0, Screen.width * 2);
+            RandomY = Random.Range(0, Screen.height * 2);
             PositionSpawn = new Vector2(RandomX, RandomY);
             Vector2 Pos = MainCam.ScreenToWorldPoint(PositionSpawn);
             Collider2D[] RayData = Physics2D.OverlapCircleAll(Pos, RayRadius);
-            if (RayData.Length <= 0)
+            if (RayData.Length <= 0 )
             {
+                Debug.Log(RayData.Length);
                 GameObject var = Instantiate(GrapplePoint, Pos, Quaternion.identity, transform);
                 grappler.PoolObj(var);
             }
@@ -77,16 +79,21 @@ public class PointSpawner : MonoBehaviour
             PositionSpawn = new Vector2(RandomX, RandomY);
             Vector2 Pos = MainCam.ScreenToWorldPoint(PositionSpawn);
             Collider2D[] RayData = Physics2D.OverlapCircleAll(Pos, RayRadius);
+            if (Random.value < 0.3f && allowEnemy)
+            {
+                GameObject var = Instantiate(EnemySingle, Pos, Quaternion.identity, transform);
+                allowEnemy = false;
+            }
             if (RayData.Length <= 0)
             {
-               
-                    GameObject var = Instantiate(GrapplePoint, Pos, Quaternion.identity, transform);
+                GameObject var = Instantiate(GrapplePoint, Pos, Quaternion.identity, transform);
                 grappler.PoolObj(var);
 
             }
         }
+       
         Debug.Log("Called");
-
+        allowEnemy = true;
     }
     void OnDrawGizmosSelected()
     {

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 604b8aabacba38f45aaedbaaf948f35b
+guid: 57f39f7a30f9c1b419b1be091ee31893
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3671436768321249919
-    second: GrapplePoint_0
+      213: 2208703988740019828
+    second: Bullet_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GrapplePoint_0
+      name: Bullet_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 14
-        width: 122
-        height: 132
+        x: 10
+        y: 11
+        width: 11
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f72a817e94093f230800000000000000
-      internalID: 3671436768321249919
+      spriteID: 47656d65394e6ae10800000000000000
+      internalID: 2208703988740019828
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      GrapplePoint_0: 3671436768321249919
+      Bullet_0: 2208703988740019828
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 604b8aabacba38f45aaedbaaf948f35b
+guid: f278c69f7c979ce40b9e24b1559c1ea4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3671436768321249919
-    second: GrapplePoint_0
+      213: -5941562429622361185
+    second: A Duck_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GrapplePoint_0
+      name: A Duck_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 14
-        width: 122
-        height: 132
+        x: 31
+        y: 15
+        width: 86
+        height: 94
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f72a817e94093f230800000000000000
-      internalID: 3671436768321249919
+      spriteID: f936d8333745b8da0800000000000000
+      internalID: -5941562429622361185
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      GrapplePoint_0: 3671436768321249919
+      A Duck_0: -5941562429622361185
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

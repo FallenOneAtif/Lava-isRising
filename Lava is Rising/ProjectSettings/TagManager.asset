@@ -7,6 +7,8 @@ TagManager:
   - GrapplePoint
   - Death
   - Serial
+  - Projectile
+  - SuperScore
   layers:
   - Default
   - TransparentFX

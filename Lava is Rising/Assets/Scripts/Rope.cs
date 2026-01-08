@@ -90,15 +90,15 @@ public class Rope : MonoBehaviour
         {
             float delta = (float)i / ((float)precision - 1f);
             Vector2 offset = Vector2.Perpendicular(grapplingGun.DistanceToPoint).normalized * ropeAnimationCurve.Evaluate(delta) * waveSize;
-            Vector2 targetPosition = Vector2.Lerp(grapplingGun.transform.position, grapplingGun.GrapplePoint.position, delta) + offset;
-            Vector2 currentPosition = Vector2.Lerp(grapplingGun.transform.position, targetPosition, ropeProgressionCurve.Evaluate(moveTime) * ropeProgressionSpeed);
+            Vector2 targetPosition = Vector2.Lerp(grapplingGun.GunPoint.position, grapplingGun.GrapplePoint.position, delta) + offset;
+            Vector2 currentPosition = Vector2.Lerp(grapplingGun.GunPoint.position, targetPosition, ropeProgressionCurve.Evaluate(moveTime) * ropeProgressionSpeed);
 
             m_lineRenderer.SetPosition(i, currentPosition);
         }
     }
     void DrawRopeNoWaves()
     {
-        m_lineRenderer.SetPosition(0, grapplingGun.transform.position);
+        m_lineRenderer.SetPosition(0, grapplingGun.GunPoint.position);
         m_lineRenderer.SetPosition(1, grapplingGun.GrapplePoint.position);
     }
 }

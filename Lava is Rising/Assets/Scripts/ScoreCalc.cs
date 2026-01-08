@@ -21,5 +21,11 @@ public class ScoreCalc : MonoBehaviour
             Score += BaseScore;
             ScoreTxt.text = Score.ToString("0");
         }
+        if (info.tag == "SuperScore")
+        {
+            Score += BaseScore * 5;
+            ScoreTxt.text = Score.ToString("0");
+            Destroy(info.gameObject);
+        }
     }
 }

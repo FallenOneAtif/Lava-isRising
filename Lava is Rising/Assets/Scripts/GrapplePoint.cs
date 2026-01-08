@@ -6,8 +6,10 @@ public class GrapplePoint : MonoBehaviour
     public bool isDestructible;
     public float DragForce;
     public Animator anim;
+    private GameObject Player;
     private void Start()
     {
+        Player = GameObject.FindWithTag("Player");
         anim = GetComponent<Animator>();
         anim.enabled = false;
     }
@@ -17,6 +19,11 @@ public class GrapplePoint : MonoBehaviour
         {
             WaitForAnim(info);
         }
+        if (info.tag == "Death")
+        {
+            anim.enabled = true;
+            transform.tag = "Serial";
+        }
     }
 
     void WaitForAnim(Collider2D info)
@@ -25,13 +32,13 @@ public class GrapplePoint : MonoBehaviour
         {
             info.gameObject.GetComponent<Grappler>().GrappleDeactivate();
         }
-        info.gameObject.GetComponent<Rigidbody2D>().linearVelocity *= DragForce;
         anim.enabled = true;
         this.GetComponent<CircleCollider2D>().enabled = false;
         transform.tag = "Serial";
     }
     public void Destroy()
     {
-         Destroy(this.gameObject);  
+        Destroy(this.gameObject);
+        Player.GetComponent<Grappler>().ClearList();
     }
 }
