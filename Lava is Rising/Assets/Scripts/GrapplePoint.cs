@@ -10,6 +10,7 @@ public class GrapplePoint : MonoBehaviour
     private void Start()
     {
         Player = GameObject.FindWithTag("Player");
+        Player.GetComponent<Grappler>().PoolObj(this.gameObject);
         anim = GetComponent<Animator>();
         anim.enabled = false;
     }

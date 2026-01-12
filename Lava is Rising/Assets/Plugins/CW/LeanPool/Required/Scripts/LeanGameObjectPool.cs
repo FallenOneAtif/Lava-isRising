@@ -202,6 +202,7 @@ namespace Lean.Pool
 		public void Spawn()
 		{
 			var clone = default(GameObject); TrySpawn(ref clone);
+
 		}
 
 		/// <summary>This will either spawn a previously despawned/preloaded clone, recycle one, create a new one, or return null.

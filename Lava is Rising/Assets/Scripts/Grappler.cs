@@ -43,12 +43,7 @@ public class Grappler : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Vector2 Mouse1 = Mouse.current.position.ReadValue();
-        //Vector2 MousePos = MainCam.ScreenToWorldPoint(Mouse1);
-        //Vector2 Direction = MousePos - Rb.position;
-
-        //float rot = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg - 90f;
-        //Rb.rotation = rot;
+        
         Rb.AddTorque(10f);
         if (lineDistance.frequency < 1)
         {
