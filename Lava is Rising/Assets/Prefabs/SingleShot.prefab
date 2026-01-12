@@ -106,6 +106,7 @@ MonoBehaviour:
   - {fileID: 7452162555885162646}
   allowFire: 1
   ReloadTime: 5
+  DistanceReq: 20
 --- !u!1 &8688253784101407611
 GameObject:
   m_ObjectHideFlags: 0
