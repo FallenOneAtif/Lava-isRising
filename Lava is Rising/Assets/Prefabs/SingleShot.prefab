@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6995621480221358765}
   - component: {fileID: 5071554826028513126}
   - component: {fileID: 3639542842776022721}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SingleShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,6 +107,7 @@ MonoBehaviour:
   allowFire: 1
   ReloadTime: 5
   DistanceReq: 20
+  Projs: []
 --- !u!1 &8688253784101407611
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7452162555885162646}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SP
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -43,7 +43,7 @@ public class Grappler : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
+         
         Rb.AddTorque(10f);
         if (lineDistance.frequency < 1)
         {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6890091826701417284}
   - component: {fileID: 8421280301797336915}
   - component: {fileID: 2709722305917179896}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MultiShot
   m_TagString: Death
   m_Icon: {fileID: 0}
@@ -113,6 +113,7 @@ MonoBehaviour:
   allowFire: 1
   ReloadTime: 5
   DistanceReq: 20
+  Projs: []
 --- !u!1 &2004762917333274646
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1846345197264537456}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7112764644628930040}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SP (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +185,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5214716379331813189}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SP (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2146459621201694057}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SP (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

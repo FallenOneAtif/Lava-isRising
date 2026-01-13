@@ -39,7 +39,6 @@ public class GrapplePoint : MonoBehaviour
     }
     public void Destroy()
     {
-        Destroy(this.gameObject);
-        Player.GetComponent<Grappler>().ClearList();
+        this.gameObject.SetActive(false);
     }
 }

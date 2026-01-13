@@ -8,9 +8,8 @@ public class PointSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject SqArea;
     [SerializeField] private Transform BasePosition;
-    [SerializeField] public float PositionMult;
-    [SerializeField] public int SpawnIndex;
-
+    [SerializeField] public float HorizontalPos, VerticalPos;
+    [SerializeField] public int HorizontalIndex, VerticalIndex;
 
     private void Start()
     {
@@ -18,9 +17,10 @@ public class PointSpawner : MonoBehaviour
     }
     public void PoolStart()
     {
-        for (int i = 0; i < 10; i++)
-        {
-            var PointsArea = LeanPool.Spawn(SqArea, transform);
+        for (int i = 0; i < 12; i++)
+        { 
+             var PointsArea = LeanPool.Spawn(SqArea, transform, true);
+            PointsArea.GetComponent<PointsArea>().spawner = this;
         }
     }
 }

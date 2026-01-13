@@ -17,6 +17,7 @@ public class EnemyManager : MonoBehaviour
     {
         Player = GameObject.FindWithTag("Player");
         PoolObjects();
+        StartCoroutine(Reload());
     }
     void LateUpdate()
     {
